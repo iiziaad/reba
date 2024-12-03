@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عداد الأيام منذ طرد ريبا</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #1e1e2f;
+            color: #ffffff;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        #counter {
+            font-size: 2rem;
+            color: #00bcd4;
+        }
+        .time-part {
+            display: inline-block;
+            margin: 0 5px;
+        }
+        .time-part span {
+            font-weight: bold;
+            color: #00bcd4;
+        }
+    </style>
+</head>
+<body>
+    <h1>عدد الأيام منذ طرد ربيع ماجد الحاوي الشهير ب ريبا او ربابا</h1>
+    <div id="counter">
+        <div class="time-part"><span id="days">0</span> يوم</div>
+        <div class="time-part"><span id="hours">0</span> ساعة</div>
+        <div class="time-part"><span id="minutes">0</span> دقيقة</div>
+        <div class="time-part"><span id="seconds">0</span> ثانية</div>
+    </div>
+
+    <script>
+        // التاريخ والوقت الأساسي
+        const startDate = new Date('2024-12-03T00:17:00'); // تاريخ ووقت البداية
+
+        // دالة تحديث العداد
+        function updateCounter() {
+            const now = new Date();
+            const differenceInMilliseconds = now - startDate;
+
+            // تحويل الفرق إلى أيام وساعات ودقائق وثوانٍ
+            const days = Math.floor(differenceInMilliseconds / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((differenceInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((differenceInMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((differenceInMilliseconds % (1000 * 60)) / 1000);
+
+            // تحديث القيم في كل جزء
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+
+        // تحديث العداد كل ثانية
+        setInterval(updateCounter, 1000);
+        updateCounter();
+    </script>
+</body>
+</html>
